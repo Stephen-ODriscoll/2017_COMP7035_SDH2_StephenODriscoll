@@ -132,7 +132,7 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public int getNumAppearances(MyList<Integer> m, int n){
 
-		if (m.length() == 0)
+		if(m.length() == 0)
 			return 0;
 		
 		else {
@@ -142,7 +142,7 @@ public class DivideAndConquerAlgorithms {
 			int a = getNumAppearances(m, n);
 			m.addElement(0, element);
 			
-			if (element == n)
+			if(element == n)
 				return (a+1);
 			
 			else

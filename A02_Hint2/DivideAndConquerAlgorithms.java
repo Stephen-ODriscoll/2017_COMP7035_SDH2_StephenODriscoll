@@ -79,13 +79,12 @@ public class DivideAndConquerAlgorithms {
 		else if (m.length() == 1)
 			System.out.println("\nMyList Contains the following items:\nItem: " + m.getElement(0));
 		
-		
 		else {
 			
-			int element = m.getElement(0);
-			m.removeElement(0);
+			int element = m.getElement(m.length()-1);
+			m.removeElement(m.length()-1);
 			recursiveDisplayElements(m);
-			m.addElement(0, element);
+			m.addElement(m.length(), element);
 			
 			System.out.println("Item: " + element);
 		}
@@ -192,9 +191,17 @@ public class DivideAndConquerAlgorithms {
 	 */	 
 	public MyList<Integer> quickSort(MyList<Integer> m){
 		
-		MyList<Integer> result = new MyDynamicList<Integer>();
+		if(m == null || m.length() == 0)
+			return new MyDynamicList<Integer>();
 		
-		if(m != null && m.length() != 0) {
+		else if(m.length() == 1) {
+			
+			MyList<Integer> m1 = new MyDynamicList<Integer>();
+			m1.addElement(0, m.getElement(0));
+			return m1;
+		}
+		
+		else {
 			
 			int element = m.getElement(0);
 			m.removeElement(0);
@@ -202,16 +209,14 @@ public class DivideAndConquerAlgorithms {
 			MyList<Integer> m1 = smallerMyList(m, element);
 			MyList<Integer> m2 = biggerEqualMyList(m, element);
 			
-			m.addElement(0, element);
-			
 			m1 = quickSort(m1);
 			m2 = quickSort(m2);
 			
+			m.addElement(0, element);
+			
 			m2.addElement(0, element);
-			result = concatenate(m1, m2);
-		}
-		
-		return result;		
+			return concatenate(m1, m2);
+		}	
 	}
 	
 }
